@@ -1,0 +1,1328 @@
+<h3 id="-add">+ (add)</h3>
+<h4 id="input-int---uint-">input: <code>int, ... | uint, ...</code></h4>
+<h4 id="output-int--uint">output: <code>int | uint</code></h4>
+<h4 id="signature--i1-i2">signature: <code>(+ i1 i2...)</code></h4>
+<h4 id="description">description:</h4>
+<p>Adds a variable number of integer inputs and returns the result. In the event of an <em>overflow</em>, throws a runtime error.</p>
+<h4 id="example">example:</h4>
+<pre><code class="language-clarity">(+ 1 2 3) ;; Returns 6
+</code></pre>
+<h3 id="--subtract">- (subtract)</h3>
+<h4 id="input-int---uint--1">input: <code>int, ... | uint, ...</code></h4>
+<h4 id="output-int--uint-1">output: <code>int | uint</code></h4>
+<h4 id="signature---i1-i2">signature: <code>(- i1 i2...)</code></h4>
+<h4 id="description-1">description:</h4>
+<p>Subtracts a variable number of integer inputs and returns the result. In the event of an <em>underflow</em>, throws a runtime error.</p>
+<h4 id="example-1">example:</h4>
+<pre><code class="language-clarity">(- 2 1 1) ;; Returns 0
+(- 0 3) ;; Returns -3
+</code></pre>
+<h3 id="-multiply">* (multiply)</h3>
+<h4 id="input-int---uint--2">input: <code>int, ... | uint, ...</code></h4>
+<h4 id="output-int--uint-2">output: <code>int | uint</code></h4>
+<h4 id="signature--i1-i2-1">signature: <code>(* i1 i2...)</code></h4>
+<h4 id="description-2">description:</h4>
+<p>Multiplies a variable number of integer inputs and returns the result. In the event of an <em>overflow</em>, throws a runtime error.</p>
+<h4 id="example-2">example:</h4>
+<pre><code class="language-clarity">(* 2 3) ;; Returns 6
+(* 5 2) ;; Returns 10
+(* 2 2 2) ;; Returns 8
+</code></pre>
+
+<!--
+<h3 id="-divide">/ (divide)</h3>
+<h4 id="input-int---uint--3">input: <code>int, ... | uint, ...</code></h4>
+<h4 id="output-int--uint-3">output: <code>int | uint</code></h4>
+<h4 id="signature--i1-i2-2">signature: <code>(/ i1 i2...)</code></h4>
+<h4 id="description-3">description:</h4>
+<p>Integer divides a variable number of integer inputs and returns the result. In the event of division by zero, throws a runtime error.</p>
+<h4 id="example-3">example:</h4>
+<pre><code class="language-clarity">(/ 2 3) ;; Returns 0
+(/ 5 2) ;; Returns 2
+(/ 4 2 2) ;; Returns 1
+</code></pre>
+<h3 id="-greater-than-or-equal">&gt;= (greater than or equal)</h3>
+<h4 id="input-int-int--uint-uint">input: <code>int, int | uint, uint</code></h4>
+<h4 id="output-bool">output: <code>bool</code></h4>
+<h4 id="signature--i1-i2-3">signature: <code>(&gt;= i1 i2)</code></h4>
+<h4 id="description-4">description:</h4>
+<p>Compares two integers, returning <code>true</code> if <code>i1</code> is greater than or equal to <code>i2</code> and <code>false</code> otherwise.</p>
+<h4 id="example-4">example:</h4>
+<pre><code class="language-clarity">(&gt;= 1 1) ;; Returns true
+(&gt;= 5 2) ;; Returns true
+</code></pre>
+<h3 id="-less-than-or-equal">&lt;= (less than or equal)</h3>
+<h4 id="input-int-int--uint-uint-1">input: <code>int, int | uint, uint</code></h4>
+<h4 id="output-bool-1">output: <code>bool</code></h4>
+<h4 id="signature--i1-i2-4">signature: <code>(&lt;= i1 i2)</code></h4>
+<h4 id="description-5">description:</h4>
+<p>Compares two integers, returning true if <code>i1</code> is less than or equal to <code>i2</code> and <code>false</code> otherwise.</p>
+<h4 id="example-5">example:</h4>
+<pre><code class="language-clarity">(&lt;= 1 1) ;; Returns true
+(&lt;= 5 2) ;; Returns false
+</code></pre>
+<h3 id="less-than">&lt; (less than)</h3>
+<h4 id="input-int-int--uint-uint-2">input: <code>int, int | uint, uint</code></h4>
+<h4 id="output-bool-2">output: <code>bool</code></h4>
+<h4 id="signature--i1-i2-5">signature: <code>(&lt; i1 i2)</code></h4>
+<h4 id="description-6">description:</h4>
+<p>Compares two integers, returning <code>true</code> if <code>i1</code> is less than <code>i2</code> and <code>false</code> otherwise.</p>
+<h4 id="example-6">example:</h4>
+<pre><code class="language-clarity">(&lt; 1 2) ;; Returns true
+(&lt; 5 2) ;; Returns false
+</code></pre>
+<h3 id="greater-than">&gt; (greater than)</h3>
+<h4 id="input-int-int--uint-uint-3">input: <code>int, int | uint, uint</code></h4>
+<h4 id="output-bool-3">output: <code>bool</code></h4>
+<h4 id="signature--i1-i2-6">signature: <code>(&gt; i1 i2)</code></h4>
+<h4 id="description-7">description:</h4>
+<p>Compares two integers, returning <code>true</code> if <code>i1</code> is greater than <code>i2</code> and false otherwise.</p>
+<h4 id="example-7">example:</h4>
+<pre><code class="language-clarity">(&gt; 1 2) ;; Returns false
+(&gt; 5 2) ;; Returns true
+</code></pre>
+<h3 id="to-int">to-int</h3>
+<h4 id="input-uint">input: <code>uint</code></h4>
+<h4 id="output-int">output: <code>int</code></h4>
+<h4 id="signature-to-int-u">signature: <code>(to-int u)</code></h4>
+<h4 id="description-8">description:</h4>
+<p>Tries to convert the <code>uint</code> argument to an <code>int</code>. Will cause a runtime error and abort if the supplied argument is &gt;= `pow(2, 127)``</p>
+<h4 id="example-8">example:</h4>
+<pre><code class="language-clarity">(to-int u238) ;; Returns 238
+</code></pre>
+<h3 id="to-uint">to-uint</h3>
+<h4 id="input-int">input: <code>int</code></h4>
+<h4 id="output-uint">output: <code>uint</code></h4>
+<h4 id="signature-to-uint-i">signature: <code>(to-uint i)</code></h4>
+<h4 id="description-9">description:</h4>
+<p>Tries to convert the <code>int</code> argument to a <code>uint</code>. Will cause a runtime error and abort if the supplied argument is negative.</p>
+<h4 id="example-9">example:</h4>
+<pre><code class="language-clarity">(to-uint 238) ;; Returns u238
+</code></pre>
+<h3 id="mod">mod</h3>
+<h4 id="input-int-int--uint-uint-4">input: <code>int, int | uint, uint</code></h4>
+<h4 id="output-int--uint-4">output: <code>int | uint</code></h4>
+<h4 id="signature-mod-i1-i2">signature: <code>(mod i1 i2)</code></h4>
+<h4 id="description-10">description:</h4>
+<p>Returns the integer remainder from integer dividing <code>i1</code> by <code>i2</code>. In the event of a division by zero, throws a runtime error.</p>
+<h4 id="example-10">example:</h4>
+<pre><code class="language-clarity">(mod 2 3) ;; Returns 2
+(mod 5 2) ;; Returns 1
+(mod 7 1) ;; Returns 0
+</code></pre>
+<h3 id="pow">pow</h3>
+<h4 id="input-int-int--uint-uint-5">input: <code>int, int | uint, uint</code></h4>
+<h4 id="output-int--uint-5">output: <code>int | uint</code></h4>
+<h4 id="signature-pow-i1-i2">signature: <code>(pow i1 i2)</code></h4>
+<h4 id="description-11">description:</h4>
+<p>Returns the result of raising <code>i1</code> to the power of <code>i2</code>. In the event of an <em>overflow</em>, throws a runtime error.</p>
+<h4 id="example-11">example:</h4>
+<pre><code class="language-clarity">(pow 2 3) ;; Returns 8
+(pow 2 2) ;; Returns 4
+(pow 7 1) ;; Returns 7
+</code></pre>
+<h3 id="sqrti">sqrti</h3>
+<h4 id="input-int--uint">input: <code>int | uint</code></h4>
+<h4 id="output-int--uint-6">output: <code>int | uint</code></h4>
+<h4 id="signature-sqrti-n">signature: <code>(sqrti n)</code></h4>
+<h4 id="description-12">description:</h4>
+<p>Returns the largest integer that is less than or equal to the square root of <code>n</code>. Fails on a negative numbers.</p>
+<h4 id="example-12">example:</h4>
+<pre><code class="language-clarity">(sqrti u11) ;; Returns u3
+(sqrti 1000000) ;; Returns 1000
+(sqrti u1) ;; Returns u1
+(sqrti 0) ;; Returns 0
+</code></pre>
+<h3 id="log2">log2</h3>
+<h4 id="input-int--uint-1">input: <code>int | uint</code></h4>
+<h4 id="output-int--uint-7">output: <code>int | uint</code></h4>
+<h4 id="signature-log2-n">signature: <code>(log2 n)</code></h4>
+<h4 id="description-13">description:</h4>
+<p>Returns the power to which the number 2 must be raised to to obtain the value <code>n</code>, rounded down to the nearest integer. Fails on a negative numbers.</p>
+<h4 id="example-13">example:</h4>
+<pre><code class="language-clarity">(log2 u8) ;; Returns u3
+(log2 8) ;; Returns 3
+(log2 u1) ;; Returns u0
+(log2 1000) ;; Returns 9
+</code></pre>
+<h3 id="xor">xor</h3>
+<h4 id="input-int-int--uint-uint-6">input: <code>int, int | uint, uint</code></h4>
+<h4 id="output-int--uint-8">output: <code>int | uint</code></h4>
+<h4 id="signature-xor-i1-i2">signature: <code>(xor i1 i2)</code></h4>
+<h4 id="description-14">description:</h4>
+<p>Returns the result of bitwise exclusive or&#39;ing <code>i1</code> with <code>i2</code>.</p>
+<h4 id="example-14">example:</h4>
+<pre><code class="language-clarity">(xor 1 2) ;; Returns 3
+(xor 120 280) ;; Returns 352
+</code></pre>
+<h3 id="and">and</h3>
+<h4 id="input-bool-">input: <code>bool, ...</code></h4>
+<h4 id="output-bool-4">output: <code>bool</code></h4>
+<h4 id="signature-and-b1-b2-">signature: <code>(and b1 b2 ...)</code></h4>
+<h4 id="description-15">description:</h4>
+<p>Returns <code>true</code> if all boolean inputs are <code>true</code>. Importantly, the supplied arguments are evaluated in-order and lazily. Lazy evaluation means that if one of the arguments returns <code>false</code>, the function short-circuits, and no subsequent arguments are evaluated.</p>
+<h4 id="example-15">example:</h4>
+<pre><code class="language-clarity">(and true false) ;; Returns false
+(and (is-eq (+ 1 2) 1) (is-eq 4 4)) ;; Returns false
+(and (is-eq (+ 1 2) 3) (is-eq 4 4)) ;; Returns true
+</code></pre>
+<h3 id="or">or</h3>
+<h4 id="input-bool--1">input: <code>bool, ...</code></h4>
+<h4 id="output-bool-5">output: <code>bool</code></h4>
+<h4 id="signature-or-b1-b2-">signature: <code>(or b1 b2 ...)</code></h4>
+<h4 id="description-16">description:</h4>
+<p>Returns <code>true</code> if any boolean inputs are <code>true</code>. Importantly, the supplied arguments are evaluated in-order and lazily. Lazy evaluation means that if one of the arguments returns <code>true</code>, the function short-circuits, and no subsequent arguments are evaluated.</p>
+<h4 id="example-16">example:</h4>
+<pre><code class="language-clarity">(or true false) ;; Returns true
+(or (is-eq (+ 1 2) 1) (is-eq 4 4)) ;; Returns true
+(or (is-eq (+ 1 2) 1) (is-eq 3 4)) ;; Returns false
+(or (is-eq (+ 1 2) 3) (is-eq 4 4)) ;; Returns true
+</code></pre>
+<h3 id="not">not</h3>
+<h4 id="input-bool">input: <code>bool</code></h4>
+<h4 id="output-bool-6">output: <code>bool</code></h4>
+<h4 id="signature-not-b1">signature: <code>(not b1)</code></h4>
+<h4 id="description-17">description:</h4>
+<p>Returns the inverse of the boolean input.</p>
+<h4 id="example-17">example:</h4>
+<pre><code class="language-clarity">(not true) ;; Returns false
+(not (is-eq 1 2)) ;; Returns true
+</code></pre>
+<h3 id="is-eq">is-eq</h3>
+<h4 id="input-a-a-">input: <code>A, A, ...</code></h4>
+<h4 id="output-bool-7">output: <code>bool</code></h4>
+<h4 id="signature-is-eq-v1-v2">signature: <code>(is-eq v1 v2...)</code></h4>
+<h4 id="description-18">description:</h4>
+<p>Compares the inputted values, returning <code>true</code> if they are all equal. Note that
+<em>unlike</em> the <code>(and ...)</code> function, <code>(is-eq ...)</code> will <em>not</em> short-circuit. All values supplied to
+is-eq <em>must</em> be the same type.</p>
+<h4 id="example-18">example:</h4>
+<pre><code class="language-clarity">(is-eq 1 1) ;; Returns true
+(is-eq true false) ;; Returns false
+(is-eq \&quot;abc\&quot; 234 234) ;; Throws type error
+</code></pre>
+<h3 id="if">if</h3>
+<h4 id="input-bool-a-a">input: <code>bool, A, A</code></h4>
+<h4 id="output-a">output: <code>A</code></h4>
+<h4 id="signature-if-bool1-expr1-expr2">signature: <code>(if bool1 expr1 expr2)</code></h4>
+<h4 id="description-19">description:</h4>
+<p>The <code>if</code> function admits a boolean argument and two expressions
+which must return the same type. In the case that the boolean input is <code>true</code>, the
+<code>if</code> function evaluates and returns <code>expr1</code>. If the boolean input is <code>false</code>, the
+<code>if</code> function evaluates and returns <code>expr2</code>.</p>
+<h4 id="example-19">example:</h4>
+<pre><code class="language-clarity">(if true 1 2) ;; Returns 1
+(if (&gt; 1 2) 1 2) ;; Returns 2
+</code></pre>
+<h3 id="let">let</h3>
+<h4 id="input-name1-anytype-name2-anytype--anytype--a">input: <code>((name1 AnyType) (name2 AnyType) ...), AnyType, ... A</code></h4>
+<h4 id="output-a-1">output: <code>A</code></h4>
+<h4 id="signature-let-name1-expr1-name2-expr2--expr-body1-expr-body2--expr-body-last">signature: <code>(let ((name1 expr1) (name2 expr2) ...) expr-body1 expr-body2 ... expr-body-last)</code></h4>
+<h4 id="description-20">description:</h4>
+<p>The <code>let</code> function accepts a list of <code>variable name</code> and <code>expression</code> pairs,
+evaluating each expression and <em>binding</em> it to the corresponding variable name.
+<code>let</code> bindings are sequential: when a <code>let</code> binding is evaluated, it may refer to prior binding.
+The <em>context</em> created by this set of bindings is used for evaluating its body expressions.
+The let expression returns the value of the last such body expression.
+Note: intermediary statements returning a response type must be checked`</p>
+<h4 id="example-20">example:</h4>
+<pre><code class="language-clarity">(let ((a 2) (b (+ 5 6 7))) (print a) (print b) (+ a b)) ;; Returns 20
+(let ((a 5) (c (+ a 1)) (d (+ c 1)) (b (+ a c d))) (print a) (print b) (+ a b)) ;; Returns 23
+</code></pre>
+<h3 id="map">map</h3>
+<h4 id="input-functiona-b--n---x-sequence_a-sequence_b--sequence_n">input: <code>Function(A, B, ..., N) -&gt; X, sequence_A, sequence_B, ..., sequence_N</code></h4>
+<h4 id="output-list-x">output: <code>(list X)</code></h4>
+<h4 id="signature-map-func-sequence_a-sequence_b--sequence_n">signature: <code>(map func sequence_A sequence_B ... sequence_N)</code></h4>
+<h4 id="description-21">description:</h4>
+<p>The <code>map</code> function applies the function <code>func</code> to each corresponding element of the input sequences,
+and outputs a <em>list</em> of the same type containing the outputs from those function applications.
+Applicable sequence types are <code>(list A)</code>, <code>buff</code>, <code>string-ascii</code> and <code>string-utf8</code>,
+for which the corresponding element types are, respectively, <code>A</code>, <code>(buff 1)</code>, <code>(string-ascii 1)</code> and <code>(string-utf8 1)</code>.
+The <code>func</code> argument must be a literal function name.
+Also, note that, no matter what kind of sequences the inputs are, the output is always a list.</p>
+<h4 id="example-21">example:</h4>
+<pre><code class="language-clarity">(map not (list true false true false)) ;; Returns (false true false true)
+(map + (list 1 2 3) (list 1 2 3) (list 1 2 3)) ;; Returns (3 6 9)
+(define-private (a-or-b (char (string-utf8 1))) (if (is-eq char u\&quot;a\&quot;) u\&quot;a\&quot; u\&quot;b\&quot;))
+(map a-or-b u\&quot;aca\&quot;) ;; Returns (u\&quot;a\&quot; u\&quot;b\&quot; u\&quot;a\&quot;)
+(define-private (zero-or-one (char (buff 1))) (if (is-eq char 0x00) 0x00 0x01))
+(map zero-or-one 0x000102) ;; Returns (0x00 0x01 0x01)
+</code></pre>
+<h3 id="fold">fold</h3>
+<h4 id="input-functiona-b---b-sequence_a-b">input: <code>Function(A, B) -&gt; B, sequence_A, B</code></h4>
+<h4 id="output-b">output: <code>B</code></h4>
+<h4 id="signature-fold-func-sequence_a-initial_b">signature: <code>(fold func sequence_A initial_B)</code></h4>
+<h4 id="description-22">description:</h4>
+<p>The <code>fold</code> function condenses <code>sequence_A</code> into a value of type
+<code>B</code> by recursively applies the function <code>func</code> to each element of the
+input sequence <em>and</em> the output of a previous application of <code>func</code>.</p>
+<p><code>fold</code> uses <code>initial_B</code> in the initial application of <code>func</code>, along with the
+first element of <code>sequence_A</code>. The resulting value of type <code>B</code> is used for the
+next application of <code>func</code>, along with the next element of <code>sequence_A</code> and so
+on. <code>fold</code> returns the last value of type <code>B</code> returned by these successive
+applications <code>func</code>.</p>
+<p>Applicable sequence types are <code>(list A)</code>, <code>buff</code>, <code>string-ascii</code> and <code>string-utf8</code>,
+for which the corresponding element types are, respectively, <code>A</code>, <code>(buff 1)</code>, <code>(string-ascii 1)</code> and <code>(string-utf8 1)</code>.
+The <code>func</code> argument must be a literal function name.</p>
+<h4 id="example-22">example:</h4>
+<pre><code class="language-clarity">(fold * (list 2 2 2) 1) ;; Returns 8
+(fold * (list 2 2 2) 0) ;; Returns 0
+;; calculates (- 11 (- 7 (- 3 2)))
+(fold - (list 3 7 11) 2) ;; Returns 5
+(define-private (concat-string (a (string-ascii 20)) (b (string-ascii 20))) (unwrap-panic (as-max-len? (concat a b) u20)))
+(fold concat-string \&quot;cdef\&quot; \&quot;ab\&quot;)   ;; Returns \&quot;fedcab\&quot;
+(fold concat-string (list \&quot;cd\&quot; \&quot;ef\&quot;) \&quot;ab\&quot;)   ;; Returns \&quot;efcdab\&quot;
+(define-private (concat-buff (a (buff 20)) (b (buff 20))) (unwrap-panic (as-max-len? (concat a b) u20)))
+(fold concat-buff 0x03040506 0x0102)   ;; Returns 0x060504030102
+</code></pre>
+<h3 id="append">append</h3>
+<h4 id="input-list-a-a">input: <code>list A, A</code></h4>
+<h4 id="output-list">output: <code>list</code></h4>
+<h4 id="signature-append-list-1-2-3-4-5">signature: <code>(append (list 1 2 3 4) 5)</code></h4>
+<h4 id="description-23">description:</h4>
+<p>The <code>append</code> function takes a list and another value with the same entry type,
+and outputs a list of the same type with max_len += 1.</p>
+<h4 id="example-23">example:</h4>
+<pre><code class="language-clarity">(append (list 1 2 3 4) 5) ;; Returns (1 2 3 4 5)
+</code></pre>
+<h3 id="concat">concat</h3>
+<h4 id="input-sequence_a-sequence_a">input: <code>sequence_A, sequence_A</code></h4>
+<h4 id="output-sequence_a">output: <code>sequence_A</code></h4>
+<h4 id="signature-concat-sequence1-sequence2">signature: <code>(concat sequence1 sequence2)</code></h4>
+<h4 id="description-24">description:</h4>
+<p>The <code>concat</code> function takes two sequences of the same type,
+and returns a concatenated sequence of the same type, with the resulting
+sequence_len = sequence1_len + sequence2_len.
+Applicable sequence types are <code>(list A)</code>, <code>buff</code>, <code>string-ascii</code> and <code>string-utf8</code>.</p>
+<h4 id="example-24">example:</h4>
+<pre><code class="language-clarity">(concat (list 1 2) (list 3 4)) ;; Returns (1 2 3 4)
+(concat \&quot;hello \&quot; \&quot;world\&quot;) ;; Returns \&quot;hello world\&quot;
+(concat 0x0102 0x0304) ;; Returns 0x01020304
+</code></pre>
+<h3 id="as-max-len">as-max-len?</h3>
+<h4 id="input-sequence_a-uint">input: <code>sequence_A, uint</code></h4>
+<h4 id="output-sequence_a-1">output: <code>sequence_A</code></h4>
+<h4 id="signature-as-max-len-sequence-max_length">signature: <code>(as-max-len? sequence max_length)</code></h4>
+<h4 id="description-25">description:</h4>
+<p>The <code>as-max-len?</code> function takes a sequence argument and a uint-valued, literal length argument.
+The function returns an optional type. If the input sequence length is less than
+or equal to the supplied max_length, this returns <code>(some sequence)</code>, otherwise it returns <code>none</code>.
+Applicable sequence types are <code>(list A)</code>, <code>buff</code>, <code>string-ascii</code> and <code>string-utf8</code>.
+`</p>
+<h4 id="example-25">example:</h4>
+<pre><code class="language-clarity">(as-max-len? (list 2 2 2) u3) ;; Returns (some (2 2 2))
+(as-max-len? (list 1 2 3) u2) ;; Returns none
+(as-max-len? \&quot;hello\&quot; u10) ;; Returns (some \&quot;hello\&quot;)
+(as-max-len? 0x010203 u10) ;; Returns (some 0x010203)
+</code></pre>
+<h3 id="len">len</h3>
+<h4 id="input-sequence_a">input: <code>sequence_A</code></h4>
+<h4 id="output-uint-1">output: <code>uint</code></h4>
+<h4 id="signature-len-sequence">signature: <code>(len sequence)</code></h4>
+<h4 id="description-26">description:</h4>
+<p>The <code>len</code> function returns the length of a given sequence.
+Applicable sequence types are <code>(list A)</code>, <code>buff</code>, <code>string-ascii</code> and <code>string-utf8</code>.
+`</p>
+<h4 id="example-26">example:</h4>
+<pre><code class="language-clarity">(len \&quot;blockstack\&quot;) ;; Returns u10
+(len (list 1 2 3 4 5)) ;; Returns u5
+(len 0x010203) ;; Returns u3
+</code></pre>
+<h3 id="element-at">element-at</h3>
+<h4 id="input-sequence_a-uint-1">input: <code>sequence_A, uint</code></h4>
+<h4 id="output-optional-a">output: <code>(optional A)</code></h4>
+<h4 id="signature-element-at-sequence-index">signature: <code>(element-at sequence index)</code></h4>
+<h4 id="description-27">description:</h4>
+<p>The <code>element-at</code> function returns the element at <code>index</code> in the provided sequence.
+Applicable sequence types are <code>(list A)</code>, <code>buff</code>, <code>string-ascii</code> and <code>string-utf8</code>,
+for which the corresponding element types are, respectively, <code>A</code>, <code>(buff 1)</code>, <code>(string-ascii 1)</code> and <code>(string-utf8 1)</code>.
+`</p>
+<h4 id="example-27">example:</h4>
+<pre><code class="language-clarity">(element-at \&quot;blockstack\&quot; u5) ;; Returns (some \&quot;s\&quot;)
+(element-at (list 1 2 3 4 5) u5) ;; Returns none
+(element-at (list 1 2 3 4 5) (+ u1 u2)) ;; Returns (some 4)
+(element-at \&quot;abcd\&quot; u1) ;; Returns (some \&quot;b\&quot;)
+(element-at 0xfb01 u1) ;; Returns (some 0x01)
+</code></pre>
+<h3 id="index-of">index-of</h3>
+<h4 id="input-sequence_a-a">input: <code>sequence_A, A</code></h4>
+<h4 id="output-optional-uint">output: <code>(optional uint)</code></h4>
+<h4 id="signature-index-of-sequence-item">signature: <code>(index-of sequence item)</code></h4>
+<h4 id="description-28">description:</h4>
+<p>The <code>index-of</code> function returns the first index at which <code>item</code> can be
+found, using <code>is-eq</code> checks, in the provided sequence.
+Applicable sequence types are <code>(list A)</code>, <code>buff</code>, <code>string-ascii</code> and <code>string-utf8</code>,
+for which the corresponding element types are, respectively, <code>A</code>, <code>(buff 1)</code>, <code>(string-ascii 1)</code> and <code>(string-utf8 1)</code>.
+If the target item is not found in the sequence (or if an empty string or buffer is
+supplied), this function returns <code>none</code>.</p>
+<h4 id="example-28">example:</h4>
+<pre><code class="language-clarity">(index-of \&quot;blockstack\&quot; \&quot;b\&quot;) ;; Returns (some u0)
+(index-of \&quot;blockstack\&quot; \&quot;k\&quot;) ;; Returns (some u4)
+(index-of \&quot;blockstack\&quot; \&quot;\&quot;) ;; Returns none
+(index-of (list 1 2 3 4 5) 6) ;; Returns none
+(index-of 0xfb01 0x01) ;; Returns (some u1)
+</code></pre>
+<h3 id="list">list</h3>
+<h4 id="input-a-">input: <code>A, ...</code></h4>
+<h4 id="output-list-a">output: <code>(list A)</code></h4>
+<h4 id="signature-list-expr1-expr2-expr3-">signature: <code>(list expr1 expr2 expr3 ...)</code></h4>
+<h4 id="description-29">description:</h4>
+<p>The <code>list</code> function constructs a list composed of the inputted values. Each
+supplied value must be of the same type.</p>
+<h4 id="example-29">example:</h4>
+<pre><code class="language-clarity">(list (+ 1 2) 4 5) ;; Returns (3 4 5)
+</code></pre>
+<h3 id="var-get">var-get</h3>
+<h4 id="input-varname">input: <code>VarName</code></h4>
+<h4 id="output-a-2">output: <code>A</code></h4>
+<h4 id="signature-var-get-var-name">signature: <code>(var-get var-name)</code></h4>
+<h4 id="description-30">description:</h4>
+<p>The <code>var-get</code> function looks up and returns an entry from a contract&#39;s data map.
+The value is looked up using <code>var-name</code>.</p>
+<h4 id="example-30">example:</h4>
+<pre><code class="language-clarity">(define-data-var cursor int 6)
+(var-get cursor) ;; Returns 6
+</code></pre>
+<h3 id="var-set">var-set</h3>
+<h4 id="input-varname-anytype">input: <code>VarName, AnyType</code></h4>
+<h4 id="output-bool-8">output: <code>bool</code></h4>
+<h4 id="signature-var-set-var-name-expr1">signature: <code>(var-set var-name expr1)</code></h4>
+<h4 id="description-31">description:</h4>
+<p>The <code>var-set</code> function sets the value associated with the input variable to the
+inputted value. The function always returns <code>true</code>.</p>
+<h4 id="example-31">example:</h4>
+<pre><code class="language-clarity">(define-data-var cursor int 6)
+(var-get cursor) ;; Returns 6
+(var-set cursor (+ (var-get cursor) 1)) ;; Returns true
+(var-get cursor) ;; Returns 7
+</code></pre>
+<h3 id="map-get">map-get?</h3>
+<h4 id="input-mapname-tuple">input: <code>MapName, tuple</code></h4>
+<h4 id="output-optional-tuple">output: <code>(optional (tuple))</code></h4>
+<h4 id="signature-map-get-map-name-key-tuple">signature: <code>(map-get? map-name key-tuple)</code></h4>
+<h4 id="description-32">description:</h4>
+<p>The <code>map-get?</code> function looks up and returns an entry from a contract&#39;s data map.
+The value is looked up using <code>key-tuple</code>.
+If there is no value associated with that key in the data map, the function returns a <code>none</code> option. Otherwise,
+it returns <code>(some value)</code>.</p>
+<h4 id="example-32">example:</h4>
+<pre><code class="language-clarity">(define-map names-map { name: (string-ascii 10) } { id: int })
+(map-set names-map { name: \&quot;blockstack\&quot; } { id: 1337 })
+(map-get? names-map (tuple (name \&quot;blockstack\&quot;))) ;; Returns (some (tuple (id 1337)))
+(map-get? names-map { name: \&quot;blockstack\&quot; }) ;; Same command, using a shorthand for constructing the tuple
+</code></pre>
+<h3 id="map-set">map-set</h3>
+<h4 id="input-mapname-tuple_a-tuple_b">input: <code>MapName, tuple_A, tuple_B</code></h4>
+<h4 id="output-bool-9">output: <code>bool</code></h4>
+<h4 id="signature-map-set-map-name-key-tuple-value-tuple">signature: <code>(map-set map-name key-tuple value-tuple)</code></h4>
+<h4 id="description-33">description:</h4>
+<p>The <code>map-set</code> function sets the value associated with the input key to the
+inputted value. This function performs a <em>blind</em> update; whether or not a value is already associated
+with the key, the function overwrites that existing association.</p>
+<p>Note: the <code>value-tuple</code> requires 1 additional byte for storage in the materialized blockchain state,
+and therefore the maximum size of a value that may be inserted into a map is MAX_CLARITY_VALUE - 1.</p>
+<h4 id="example-33">example:</h4>
+<pre><code class="language-clarity">(define-map names-map { name: (string-ascii 10) } { id: int })
+(map-set names-map { name: \&quot;blockstack\&quot; } { id: 1337 }) ;; Returns true
+(map-set names-map (tuple (name \&quot;blockstack\&quot;)) (tuple (id 1337))) ;; Same command, using a shorthand for constructing the tuple
+</code></pre>
+<h3 id="map-insert">map-insert</h3>
+<h4 id="input-mapname-tuple_a-tuple_b-1">input: <code>MapName, tuple_A, tuple_B</code></h4>
+<h4 id="output-bool-10">output: <code>bool</code></h4>
+<h4 id="signature-map-insert-map-name-key-tuple-value-tuple">signature: <code>(map-insert map-name key-tuple value-tuple)</code></h4>
+<h4 id="description-34">description:</h4>
+<p>The <code>map-insert</code> function sets the value associated with the input key to the
+inputted value if and only if there is not already a value associated with the key in the map.
+If an insert occurs, the function returns <code>true</code>. If a value already existed for
+this key in the data map, the function returns <code>false</code>.</p>
+<p>Note: the <code>value-tuple</code> requires 1 additional byte for storage in the materialized blockchain state,
+and therefore the maximum size of a value that may be inserted into a map is MAX_CLARITY_VALUE - 1.</p>
+<h4 id="example-34">example:</h4>
+<pre><code class="language-clarity">(define-map names-map { name: (string-ascii 10) } { id: int })
+(map-insert names-map { name: \&quot;blockstack\&quot; } { id: 1337 }) ;; Returns true
+(map-insert names-map { name: \&quot;blockstack\&quot; } { id: 1337 }) ;; Returns false
+(map-insert names-map (tuple (name \&quot;blockstack\&quot;)) (tuple (id 1337))) ;; Same command, using a shorthand for constructing the tuple
+</code></pre>
+<h3 id="map-delete">map-delete</h3>
+<h4 id="input-mapname-tuple-1">input: <code>MapName, tuple</code></h4>
+<h4 id="output-bool-11">output: <code>bool</code></h4>
+<h4 id="signature-map-delete-map-name-key-tuple">signature: <code>(map-delete map-name key-tuple)</code></h4>
+<h4 id="description-35">description:</h4>
+<p>The <code>map-delete</code> function removes the value associated with the input key for
+the given map. If an item exists and is removed, the function returns <code>true</code>.
+If a value did not exist for this key in the data map, the function returns <code>false</code>.</p>
+<h4 id="example-35">example:</h4>
+<pre><code class="language-clarity">(define-map names-map { name: (string-ascii 10) } { id: int })
+(map-insert names-map { name: \&quot;blockstack\&quot; } { id: 1337 }) ;; Returns true
+(map-delete names-map { name: \&quot;blockstack\&quot; }) ;; Returns true
+(map-delete names-map { name: \&quot;blockstack\&quot; }) ;; Returns false
+(map-delete names-map (tuple (name \&quot;blockstack\&quot;))) ;; Same command, using a shorthand for constructing the tuple
+</code></pre>
+<h3 id="tuple">tuple</h3>
+<h4 id="input-key-name-a-key-name-2-b-">input: <code>(key-name A), (key-name-2 B), ...</code></h4>
+<h4 id="output-tuple-key-name-a-key-name-2-b-">output: <code>(tuple (key-name A) (key-name-2 B) ...)</code></h4>
+<h4 id="signature-tuple-key0-expr0-key1-expr1-">signature: <code>(tuple (key0 expr0) (key1 expr1) ...)</code></h4>
+<h4 id="description-36">description:</h4>
+<p>The <code>tuple</code> special form constructs a typed tuple from the supplied key and expression pairs.
+A <code>get</code> function can use typed tuples as input to select specific values from a given tuple.
+Key names may not appear multiple times in the same tuple definition. Supplied expressions are evaluated and
+associated with the expressions&#39; paired key name.</p>
+<p>There is a shorthand using curly brackets of the form {key0: expr0, key1: expr, ...}`</p>
+<h4 id="example-36">example:</h4>
+<pre><code class="language-clarity">(tuple (name \&quot;blockstack\&quot;) (id 1337)) ;; using tuple
+{name: \&quot;blockstack\&quot;, id: 1337} ;; using curly brackets
+</code></pre>
+<h3 id="get">get</h3>
+<h4 id="input-keyname-tuple--optional-tuple">input: <code>KeyName, (tuple) | (optional (tuple))</code></h4>
+<h4 id="output-a-3">output: <code>A</code></h4>
+<h4 id="signature-get-key-name-tuple">signature: <code>(get key-name tuple)</code></h4>
+<h4 id="description-37">description:</h4>
+<p>The <code>get</code> function fetches the value associated with a given key from the supplied typed tuple.
+If an <code>Optional</code> value is supplied as the inputted tuple, <code>get</code> returns an <code>Optional</code> type of the specified key in
+the tuple. If the supplied option is a <code>(none)</code> option, get returns <code>(none)</code>.</p>
+<h4 id="example-37">example:</h4>
+<pre><code class="language-clarity">(define-map names-map { name: (string-ascii 12) } { id: int })
+(map-insert names-map { name: \&quot;blockstack\&quot; } { id: 1337 }) ;; Returns true
+(get id (tuple (name \&quot;blockstack\&quot;) (id 1337))) ;; Returns 1337
+(get id (map-get? names-map (tuple (name \&quot;blockstack\&quot;)))) ;; Returns (some 1337)
+(get id (map-get? names-map (tuple (name \&quot;non-existent\&quot;)))) ;; Returns none
+</code></pre>
+<h3 id="merge">merge</h3>
+<h4 id="input-tuple-tuple">input: <code>tuple, tuple</code></h4>
+<h4 id="output-tuple">output: <code>tuple</code></h4>
+<h4 id="signature-merge-tuple--key1-val1-">signature: <code>(merge tuple { key1: val1 })</code></h4>
+<h4 id="description-38">description:</h4>
+<p>The <code>merge</code> function returns a new tuple with the combined fields, without mutating the supplied tuples.</p>
+<h4 id="example-38">example:</h4>
+<pre><code class="language-clarity">(define-map users { id: int } { name: (string-ascii 12), address: (optional principal) })
+(map-insert users { id: 1337 } { name: \&quot;john\&quot;, address: none }) ;; Returns true
+(let ((user (unwrap-panic (map-get? users { id: 1337 }))))
+(merge user { address: (some &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF) })) ;; Returns (tuple (address (some SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF)) (name \&quot;john\&quot;))
+</code></pre>
+<h3 id="begin">begin</h3>
+<h4 id="input-anytype--a">input: <code>AnyType, ... A</code></h4>
+<h4 id="output-a-4">output: <code>A</code></h4>
+<h4 id="signature-begin-expr1-expr2-expr3--expr-last">signature: <code>(begin expr1 expr2 expr3 ... expr-last)</code></h4>
+<h4 id="description-39">description:</h4>
+<p>The <code>begin</code> function evaluates each of its input expressions, returning the
+return value of the last such expression.
+Note: intermediary statements returning a response type must be checked.</p>
+<h4 id="example-39">example:</h4>
+<pre><code class="language-clarity">(begin (+ 1 2) 4 5) ;; Returns 5
+</code></pre>
+<h3 id="hash160">hash160</h3>
+<h4 id="input-buffuintint">input: <code>buff|uint|int</code></h4>
+<h4 id="output-buff-20">output: <code>(buff 20)</code></h4>
+<h4 id="signature-hash160-value">signature: <code>(hash160 value)</code></h4>
+<h4 id="description-40">description:</h4>
+<p>The <code>hash160</code> function computes <code>RIPEMD160(SHA256(x))</code> of the inputted value.
+If an integer (128 bit) is supplied the hash is computed over the little-endian representation of the
+integer.</p>
+<h4 id="example-40">example:</h4>
+<pre><code class="language-clarity">(hash160 0) ;; Returns 0xe4352f72356db555721651aa612e00379167b30f
+</code></pre>
+<h3 id="sha256">sha256</h3>
+<h4 id="input-buffuintint-1">input: <code>buff|uint|int</code></h4>
+<h4 id="output-buff-32">output: <code>(buff 32)</code></h4>
+<h4 id="signature-sha256-value">signature: <code>(sha256 value)</code></h4>
+<h4 id="description-41">description:</h4>
+<p>The <code>sha256</code> function computes <code>SHA256(x)</code> of the inputted value.
+If an integer (128 bit) is supplied the hash is computed over the little-endian representation of the
+integer.</p>
+<h4 id="example-41">example:</h4>
+<pre><code class="language-clarity">(sha256 0) ;; Returns 0x374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb
+</code></pre>
+<h3 id="sha512">sha512</h3>
+<h4 id="input-buffuintint-2">input: <code>buff|uint|int</code></h4>
+<h4 id="output-buff-64">output: <code>(buff 64)</code></h4>
+<h4 id="signature-sha512-value">signature: <code>(sha512 value)</code></h4>
+<h4 id="description-42">description:</h4>
+<p>The <code>sha512</code> function computes <code>SHA512(x)</code> of the inputted value.
+If an integer (128 bit) is supplied the hash is computed over the little-endian representation of the
+integer.</p>
+<h4 id="example-42">example:</h4>
+<pre><code class="language-clarity">(sha512 1) ;; Returns 0x6fcee9a7b7a7b821d241c03c82377928bc6882e7a08c78a4221199bfa220cdc55212273018ee613317c8293bb8d1ce08d1e017508e94e06ab85a734c99c7cc34
+</code></pre>
+<h3 id="sha512256">sha512/256</h3>
+<h4 id="input-buffuintint-3">input: <code>buff|uint|int</code></h4>
+<h4 id="output-buff-32-1">output: <code>(buff 32)</code></h4>
+<h4 id="signature-sha512256-value">signature: <code>(sha512/256 value)</code></h4>
+<h4 id="description-43">description:</h4>
+<p>The <code>sha512/256</code> function computes <code>SHA512/256(x)</code> (the SHA512 algorithm with the 512/256 initialization vector, truncated
+to 256 bits) of the inputted value.
+If an integer (128 bit) is supplied the hash is computed over the little-endian representation of the
+integer.</p>
+<h4 id="example-43">example:</h4>
+<pre><code class="language-clarity">(sha512/256 1) ;; Returns 0x515a7e92e7c60522db968d81ff70b80818fc17aeabbec36baf0dda2812e94a86
+</code></pre>
+<h3 id="keccak256">keccak256</h3>
+<h4 id="input-buffuintint-4">input: <code>buff|uint|int</code></h4>
+<h4 id="output-buff-32-2">output: <code>(buff 32)</code></h4>
+<h4 id="signature-keccak256-value">signature: <code>(keccak256 value)</code></h4>
+<h4 id="description-44">description:</h4>
+<p>The <code>keccak256</code> function computes <code>KECCAK256(value)</code> of the inputted value.
+Note that this differs from the <code>NIST SHA-3</code> (that is, FIPS 202) standard. If an integer (128 bit)
+is supplied the hash is computed over the little-endian representation of the integer.</p>
+<h4 id="example-44">example:</h4>
+<pre><code class="language-clarity">(keccak256 0) ;; Returns 0xf490de2920c8a35fabeb13208852aa28c76f9be9b03a4dd2b3c075f7a26923b4
+</code></pre>
+<h3 id="secp256k1-recover">secp256k1-recover?</h3>
+<h4 id="input-buff-32-buff-65">input: <code>(buff 32), (buff 65)</code></h4>
+<h4 id="output-response-buff-33-uint">output: <code>(response (buff 33) uint)</code></h4>
+<h4 id="signature-secp256k1-recover-message-hash-signature">signature: <code>(secp256k1-recover? message-hash signature)</code></h4>
+<h4 id="description-45">description:</h4>
+<p>The <code>secp256k1-recover?</code> function recovers the public key used to sign the message which sha256 is <code>message-hash</code>
+with the provided <code>signature</code>.
+If the signature does not match, it will return the error code <code>(err u1).</code>.
+If the signature is invalid, it will return the error code <code>(err u2).</code>.
+The signature includes 64 bytes plus an additional recovery id (00..03) for a total of 65 bytes.</p>
+<h4 id="example-45">example:</h4>
+<pre><code class="language-clarity">(secp256k1-recover? 0xde5b9eb9e7c5592930eb2e30a01369c36586d872082ed8181ee83d2a0ec20f04
+ 0x8738487ebe69b93d8e51583be8eee50bb4213fc49c767d329632730cc193b873554428fc936ca3569afc15f1c9365f6591d6251a89fee9c9ac661116824d3a1301)
+ ;; Returns (ok 0x03adb8de4bfb65db2cfd6120d55c6526ae9c52e675db7e47308636534ba7786110)
+</code></pre>
+<h3 id="secp256k1-verify">secp256k1-verify</h3>
+<h4 id="input-buff-32-buff-64--buff-65-buff-33">input: <code>(buff 32), (buff 64) | (buff 65), (buff 33)</code></h4>
+<h4 id="output-bool-12">output: <code>bool</code></h4>
+<h4 id="signature-secp256k1-verify-message-hash-signature-public-key">signature: <code>(secp256k1-verify message-hash signature public-key)</code></h4>
+<h4 id="description-46">description:</h4>
+<p>The <code>secp256k1-verify</code> function verifies that the provided signature of the message-hash
+was signed with the private key that generated the public key.
+The <code>message-hash</code> is the <code>sha256</code> of the message.
+The signature includes 64 bytes plus an optional additional recovery id (00..03) for a total of 64 or 65 bytes.</p>
+<h4 id="example-46">example:</h4>
+<pre><code class="language-clarity">(secp256k1-verify 0xde5b9eb9e7c5592930eb2e30a01369c36586d872082ed8181ee83d2a0ec20f04
+ 0x8738487ebe69b93d8e51583be8eee50bb4213fc49c767d329632730cc193b873554428fc936ca3569afc15f1c9365f6591d6251a89fee9c9ac661116824d3a1301
+ 0x03adb8de4bfb65db2cfd6120d55c6526ae9c52e675db7e47308636534ba7786110) ;; Returns true
+(secp256k1-verify 0xde5b9eb9e7c5592930eb2e30a01369c36586d872082ed8181ee83d2a0ec20f04
+ 0x8738487ebe69b93d8e51583be8eee50bb4213fc49c767d329632730cc193b873554428fc936ca3569afc15f1c9365f6591d6251a89fee9c9ac661116824d3a13
+ 0x03adb8de4bfb65db2cfd6120d55c6526ae9c52e675db7e47308636534ba7786110) ;; Returns true
+(secp256k1-verify 0x0000000000000000000000000000000000000000000000000000000000000000
+ 0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+ 0x03adb8de4bfb65db2cfd6120d55c6526ae9c52e675db7e47308636534ba7786110) ;; Returns false
+</code></pre>
+<h3 id="print">print</h3>
+<h4 id="input-a">input: <code>A</code></h4>
+<h4 id="output-a-5">output: <code>A</code></h4>
+<h4 id="signature-print-expr">signature: <code>(print expr)</code></h4>
+<h4 id="description-47">description:</h4>
+<p>The <code>print</code> function evaluates and returns its input expression. On Stacks Core
+nodes configured for development (as opposed to production mining nodes), this function prints the resulting value to <code>STDOUT</code> (standard output).</p>
+<h4 id="example-47">example:</h4>
+<pre><code class="language-clarity">(print (+ 1 2 3)) ;; Returns 6
+</code></pre>
+<h3 id="contract-call">contract-call?</h3>
+<h4 id="input-contractname-publicfunctionname-arg0-">input: <code>ContractName, PublicFunctionName, Arg0, ...</code></h4>
+<h4 id="output-response-a-b">output: <code>(response A B)</code></h4>
+<h4 id="signature-contract-call-contract-name-function-name-arg0-arg1-">signature: <code>(contract-call? .contract-name function-name arg0 arg1 ...)</code></h4>
+<h4 id="description-48">description:</h4>
+<p>The <code>contract-call?</code> function executes the given public function of the given contract.
+You <em>may not</em> use this function to call a public function defined in the current contract. If the public
+function returns <em>err</em>, any database changes resulting from calling <code>contract-call?</code> are aborted.
+If the function returns <em>ok</em>, database changes occurred.</p>
+<h4 id="example-48">example:</h4>
+<pre><code class="language-clarity">
+;; instantiate the sample-contracts/tokens.clar contract first!
+(as-contract (contract-call? .tokens mint! u19)) ;; Returns (ok u19)
+</code></pre>
+<h3 id="as-contract">as-contract</h3>
+<h4 id="input-a-1">input: <code>A</code></h4>
+<h4 id="output-a-6">output: <code>A</code></h4>
+<h4 id="signature-as-contract-expr">signature: <code>(as-contract expr)</code></h4>
+<h4 id="description-49">description:</h4>
+<p>The <code>as-contract</code> function switches the current context&#39;s <code>tx-sender</code> value to the <em>contract&#39;s</em>
+principal and executes <code>expr</code> with that context. It returns the resulting value of <code>expr</code>.</p>
+<h4 id="example-49">example:</h4>
+<pre><code class="language-clarity">(as-contract tx-sender) ;; Returns S1G2081040G2081040G2081040G208105NK8PE5.docs-test
+</code></pre>
+<h3 id="contract-of">contract-of</h3>
+<h4 id="input-trait">input: <code>Trait</code></h4>
+<h4 id="output-principal">output: <code>principal</code></h4>
+<h4 id="signature-contract-of-contract-name">signature: <code>(contract-of .contract-name)</code></h4>
+<h4 id="description-50">description:</h4>
+<p>The <code>contract-of</code> function returns the principal of the contract implementing the trait.</p>
+<h4 id="example-50">example:</h4>
+<pre><code class="language-clarity">(use-trait token-a-trait &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF.token-a.token-trait)
+(define-public (forward-get-balance (user principal) (contract &lt;token-a-trait&gt;))
+  (begin
+    (ok (contract-of contract)))) ;; returns the principal of the contract implementing &lt;token-a-trait&gt;
+</code></pre>
+<h3 id="principal-of">principal-of?</h3>
+<h4 id="input-buff-33">input: <code>(buff 33)</code></h4>
+<h4 id="output-response-principal-uint">output: <code>(response principal uint)</code></h4>
+<h4 id="signature-principal-of-public-key">signature: <code>(principal-of? public-key)</code></h4>
+<h4 id="description-51">description:</h4>
+<p>The <code>principal-of?</code> function returns the principal derived from the provided public key.
+If the <code>public-key</code> is invalid, it will return the error code <code>(err u1).</code>.
+`</p>
+<h4 id="example-51">example:</h4>
+<pre><code class="language-clarity">(principal-of? 0x03adb8de4bfb65db2cfd6120d55c6526ae9c52e675db7e47308636534ba7786110) ;; Returns (ok ST1AW6EKPGT61SQ9FNVDS17RKNWT8ZP582VF9HSCP)
+</code></pre>
+<h3 id="at-block">at-block</h3>
+<h4 id="input-buff-32-a">input: <code>(buff 32), A</code></h4>
+<h4 id="output-a-7">output: <code>A</code></h4>
+<h4 id="signature-at-block-id-block-hash-expr">signature: <code>(at-block id-block-hash expr)</code></h4>
+<h4 id="description-52">description:</h4>
+<p>The <code>at-block</code> function evaluates the expression <code>expr</code> <em>as if</em> it were evaluated at the end of the
+block indicated by the <em>block-hash</em> argument. The <code>expr</code> closure must be read-only.</p>
+<p>Note: The block identifying hash must be a hash returned by the <code>id-header-hash</code> block information
+property. This hash uniquely identifies Stacks blocks and is unique across Stacks forks. While the hash returned by
+<code>header-hash</code> is unique within the context of a single fork, it is not unique across Stacks forks.</p>
+<p>The function returns the result of evaluating <code>expr</code>.</p>
+<h4 id="example-52">example:</h4>
+<pre><code class="language-clarity">(define-data-var data int 1)
+(at-block 0x0000000000000000000000000000000000000000000000000000000000000000 block-height) ;; Returns u0
+(at-block (get-block-info? id-header-hash 0) (var-get data)) ;; Throws NoSuchDataVariable because `data` wasn&#39;t initialized at block height 0
+</code></pre>
+<h3 id="get-block-info">get-block-info?</h3>
+<h4 id="input-blockinfopropertyname-blockheightint">input: <code>BlockInfoPropertyName, BlockHeightInt</code></h4>
+<h4 id="output-optional-buff--optional-uint">output: <code>(optional buff) | (optional uint)</code></h4>
+<h4 id="signature-get-block-info-prop-name-block-height-expr">signature: <code>(get-block-info? prop-name block-height-expr)</code></h4>
+<h4 id="description-53">description:</h4>
+<p>The <code>get-block-info?</code> function fetches data for a block of the given block height. The
+value and type returned are determined by the specified <code>BlockInfoPropertyName</code>. If the provided <code>BlockHeightInt</code> does
+not correspond to an existing block prior to the current block, the function returns <code>none</code>. The currently available property names
+are <code>time</code>, <code>header-hash</code>, <code>burnchain-header-hash</code>, <code>id-header-hash</code>, <code>miner-address</code>, and <code>vrf-seed</code>.</p>
+<p>The <code>time</code> property returns an integer value of the block header time field. This is a Unix epoch timestamp in seconds
+which roughly corresponds to when the block was mined. <strong>Warning</strong>: this does not increase monotonically with each block
+and block times are accurate only to within two hours. See <a href="https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki">BIP113</a> for more information.</p>
+<p>The <code>header-hash</code>, <code>burnchain-header-hash</code>, <code>id-header-hash</code>, and <code>vrf-seed</code> properties return a 32-byte buffer.</p>
+<p>The <code>miner-address</code> property returns a <code>principal</code> corresponding to the miner of the given block.</p>
+<p>The <code>id-header-hash</code> is the block identifier value that must be used as input to the <code>at-block</code> function.</p>
+<h4 id="example-53">example:</h4>
+<pre><code class="language-clarity">(get-block-info? time u0) ;; Returns (some u1557860301)
+(get-block-info? header-hash u0) ;; Returns (some 0x374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb)
+(get-block-info? vrf-seed u0) ;; Returns (some 0xf490de2920c8a35fabeb13208852aa28c76f9be9b03a4dd2b3c075f7a26923b4)
+</code></pre>
+<h3 id="err">err</h3>
+<h4 id="input-a-2">input: <code>A</code></h4>
+<h4 id="output-response-a-b-1">output: <code>(response A B)</code></h4>
+<h4 id="signature-err-value">signature: <code>(err value)</code></h4>
+<h4 id="description-54">description:</h4>
+<p>The <code>err</code> function constructs a response type from the input value. Use <code>err</code> for
+creating return values in public functions. An <em>err</em> value indicates that any database changes during
+the processing of the function should be rolled back.</p>
+<h4 id="example-54">example:</h4>
+<pre><code class="language-clarity">(err true) ;; Returns (err true)
+</code></pre>
+<h3 id="ok">ok</h3>
+<h4 id="input-a-3">input: <code>A</code></h4>
+<h4 id="output-response-a-b-2">output: <code>(response A B)</code></h4>
+<h4 id="signature-ok-value">signature: <code>(ok value)</code></h4>
+<h4 id="description-55">description:</h4>
+<p>The <code>ok</code> function constructs a response type from the input value. Use <code>ok</code> for
+creating return values in public functions. An <em>ok</em> value indicates that any database changes during
+the processing of the function should materialize.</p>
+<h4 id="example-55">example:</h4>
+<pre><code class="language-clarity">(ok 1) ;; Returns (ok 1)
+</code></pre>
+<h3 id="some">some</h3>
+<h4 id="input-a-4">input: <code>A</code></h4>
+<h4 id="output-optional-a-1">output: <code>(optional A)</code></h4>
+<h4 id="signature-some-value">signature: <code>(some value)</code></h4>
+<h4 id="description-56">description:</h4>
+<p>The <code>some</code> function constructs a <code>optional</code> type from the input value.</p>
+<h4 id="example-56">example:</h4>
+<pre><code class="language-clarity">(some 1) ;; Returns (some 1)
+(is-none (some 2)) ;; Returns false
+</code></pre>
+<h3 id="default-to">default-to</h3>
+<h4 id="input-a-optional-a">input: <code>A, (optional A)</code></h4>
+<h4 id="output-a-8">output: <code>A</code></h4>
+<h4 id="signature-default-to-default-value-option-value">signature: <code>(default-to default-value option-value)</code></h4>
+<h4 id="description-57">description:</h4>
+<p>The <code>default-to</code> function attempts to &#39;unpack&#39; the second argument: if the argument is
+a <code>(some ...)</code> option, it returns the inner value of the option. If the second argument is a <code>(none)</code> value,
+<code>default-to</code> it returns the value of <code>default-value</code>.</p>
+<h4 id="example-57">example:</h4>
+<pre><code class="language-clarity">(define-map names-map { name: (string-ascii 12) } { id: int })
+(map-set names-map { name: \&quot;blockstack\&quot; } { id: 1337 })
+(default-to 0 (get id (map-get? names-map (tuple (name \&quot;blockstack\&quot;))))) ;; Returns 1337
+(default-to 0 (get id (map-get? names-map (tuple (name \&quot;non-existant\&quot;))))) ;; Returns 0
+</code></pre>
+<h3 id="asserts">asserts!</h3>
+<h4 id="input-bool-c">input: <code>bool, C</code></h4>
+<h4 id="output-bool-13">output: <code>bool</code></h4>
+<h4 id="signature-asserts-bool-expr-thrown-value">signature: <code>(asserts! bool-expr thrown-value)</code></h4>
+<h4 id="description-58">description:</h4>
+<p>The <code>asserts!</code> function admits a boolean argument and asserts its evaluation:
+if bool-expr is <code>true</code>, <code>asserts!</code> returns <code>true</code> and proceeds in the program execution.
+If the supplied argument is returning a false value, <code>asserts!</code> <em>returns</em> <code>thrown-value</code> and exits the current
+control-flow.</p>
+<h4 id="example-58">example:</h4>
+<pre><code class="language-clarity">(asserts! (is-eq 1 1) (err 1)) ;; Returns true
+</code></pre>
+<h3 id="unwrap">unwrap!</h3>
+<h4 id="input-optional-a--response-a-b-c">input: <code>(optional A) | (response A B), C</code></h4>
+<h4 id="output-a-9">output: <code>A</code></h4>
+<h4 id="signature-unwrap-option-input-thrown-value">signature: <code>(unwrap! option-input thrown-value)</code></h4>
+<h4 id="description-59">description:</h4>
+<p>The <code>unwrap!</code> function attempts to &#39;unpack&#39; the first argument: if the argument is
+an option type, and the argument is a <code>(some ...)</code> option, <code>unwrap!</code> returns the inner value of the
+option. If the argument is a response type, and the argument is an <code>(ok ...)</code> response, <code>unwrap!</code> returns
+the inner value of the <code>ok</code>. If the supplied argument is either an <code>(err ...)</code> or a <code>(none)</code> value,
+<code>unwrap!</code> <em>returns</em> <code>thrown-value</code> from the current function and exits the current control-flow.</p>
+<h4 id="example-59">example:</h4>
+<pre><code class="language-clarity">(define-map names-map { name: (string-ascii 12) } { id: int })
+(map-set names-map { name: \&quot;blockstack\&quot; } { id: 1337 })
+(define-private (get-name-or-err (name (string-ascii 12)))
+  (let ((raw-name (unwrap! (map-get? names-map { name: name }) (err 1))))
+       (ok raw-name)))
+
+(get-name-or-err \&quot;blockstack\&quot;) ;; Returns (ok (tuple (id 1337)))
+(get-name-or-err \&quot;non-existant\&quot;) ;; Returns (err 1)
+</code></pre>
+<h3 id="unwrap-err">unwrap-err!</h3>
+<h4 id="input-response-a-b-c">input: <code>(response A B), C</code></h4>
+<h4 id="output-b-1">output: <code>B</code></h4>
+<h4 id="signature-unwrap-err-response-input-thrown-value">signature: <code>(unwrap-err! response-input thrown-value)</code></h4>
+<h4 id="description-60">description:</h4>
+<p>The <code>unwrap-err!</code> function attempts to &#39;unpack&#39; the first argument: if the argument
+is an <code>(err ...)</code> response, <code>unwrap-err!</code> returns the inner value of the <code>err</code>.
+If the supplied argument is an <code>(ok ...)</code> value,
+<code>unwrap-err!</code> <em>returns</em> <code>thrown-value</code> from the current function and exits the current control-flow.</p>
+<h4 id="example-60">example:</h4>
+<pre><code class="language-clarity">(unwrap-err! (err 1) false) ;; Returns 1
+</code></pre>
+<h3 id="unwrap-panic">unwrap-panic</h3>
+<h4 id="input-optional-a--response-a-b">input: <code>(optional A) | (response A B)</code></h4>
+<h4 id="output-a-10">output: <code>A</code></h4>
+<h4 id="signature-unwrap-panic-option-input">signature: <code>(unwrap-panic option-input)</code></h4>
+<h4 id="description-61">description:</h4>
+<p>The <code>unwrap</code> function attempts to &#39;unpack&#39; its argument: if the argument is
+an option type, and the argument is a <code>(some ...)</code> option, this function returns the inner value of the
+option. If the argument is a response type, and the argument is an <code>(ok ...)</code> response, it returns
+the inner value of the <code>ok</code>. If the supplied argument is either an <code>(err ...)</code> or a <code>(none)</code> value,
+<code>unwrap</code> throws a runtime error, aborting any further processing of the current transaction.</p>
+<h4 id="example-61">example:</h4>
+<pre><code class="language-clarity">(define-map names-map { name: (string-ascii 12) } { id: int })
+(map-set names-map { name: \&quot;blockstack\&quot; } { id: 1337 })
+(unwrap-panic (map-get? names-map { name: \&quot;blockstack\&quot; })) ;; Returns (tuple (id 1337))
+(unwrap-panic (map-get? names-map { name: \&quot;non-existant\&quot; })) ;; Throws a runtime exception
+</code></pre>
+<h3 id="unwrap-err-panic">unwrap-err-panic</h3>
+<h4 id="input-response-a-b">input: <code>(response A B)</code></h4>
+<h4 id="output-b-2">output: <code>B</code></h4>
+<h4 id="signature-unwrap-err-panic-response-input">signature: <code>(unwrap-err-panic response-input)</code></h4>
+<h4 id="description-62">description:</h4>
+<p>The <code>unwrap-err</code> function attempts to &#39;unpack&#39; the first argument: if the argument
+is an <code>(err ...)</code> response, <code>unwrap</code> returns the inner value of the <code>err</code>.
+If the supplied argument is an <code>(ok ...)</code> value,
+<code>unwrap-err</code> throws a runtime error, aborting any further processing of the current transaction.</p>
+<h4 id="example-62">example:</h4>
+<pre><code class="language-clarity">(unwrap-err-panic (err 1)) ;; Returns 1
+(unwrap-err-panic (ok 1)) ;; Throws a runtime exception
+</code></pre>
+<h3 id="match">match</h3>
+<h4 id="input-optional-a-name-expression-expression--response-a-b-name-expression-name-expression">input: <code>(optional A) name expression expression | (response A B) name expression name expression</code></h4>
+<h4 id="output-c">output: <code>C</code></h4>
+<h4 id="signature-match-opt-input-some-binding-name-some-branch-none-branch-">signature: `(match opt-input some-binding-name some-branch none-branch) |</h4>
+<p>(match-resp input ok-binding-name ok-branch err-binding-name err-branch)`</p>
+<h4 id="description-63">description:</h4>
+<p>The <code>match</code> function is used to test and destructure optional and response types.</p>
+<p>If the <code>input</code> is an optional, it tests whether the provided
+<code>input</code> is a <code>some</code> or <code>none</code> option, and evaluates <code>some-branch</code> or
+<code>none-branch</code> in each respective case.</p>
+<p>Within the <code>some-branch</code>, the <em>contained value</em> of the <code>input</code>
+argument is bound to the provided <code>some-binding-name</code> name.</p>
+<p>Only <em>one</em> of the branches will be evaluated (similar to <code>if</code> statements).</p>
+<p>If the <code>input</code> is a response, it tests whether the provided <code>input</code> is
+an <code>ok</code> or <code>err</code> response type, and evaluates <code>ok-branch</code> or
+<code>err-branch</code> in each respective case.</p>
+<p>Within the <code>ok-branch</code>, the <em>contained ok value</em> of the <code>input</code>
+argument is bound to the provided <code>ok-binding-name</code> name.</p>
+<p>Within the <code>err-branch</code>, the <em>contained err value</em> of the <code>input</code>
+argument is bound to the provided <code>err-binding-name</code> name.</p>
+<p>Only <em>one</em> of the branches will be evaluated (similar to <code>if</code> statements).</p>
+<p>Note: Type checking requires that the type of both the ok and err parts of the
+response object be determinable. For situations in which one of the parts of a response
+is untyped, you should use <code>unwrap-panic</code> or <code>unwrap-err-panic</code> instead of <code>match</code>.</p>
+<h4 id="example-63">example:</h4>
+<pre><code class="language-clarity">
+(define-private (add-10 (x (optional int)))
+  (match x
+  value (+ 10 value)
+  10))
+(add-10 (some 5)) ;; Returns 15
+(add-10 none) ;; Returns 10
+
+(define-private (add-or-pass-err (x (response int (string-ascii 10))) (to-add int))
+  (match x
+   value (ok (+ to-add value))
+   err-value (err err-value)))
+(add-or-pass-err (ok 5) 20) ;; Returns (ok 25)
+(add-or-pass-err (err \&quot;ERROR\&quot;) 20) ;; Returns (err \&quot;ERROR\&quot;)
+</code></pre>
+<h3 id="try">try!</h3>
+<h4 id="input-optional-a--response-a-b-1">input: <code>(optional A) | (response A B)</code></h4>
+<h4 id="output-a-11">output: <code>A</code></h4>
+<h4 id="signature-try-option-input">signature: <code>(try! option-input)</code></h4>
+<h4 id="description-64">description:</h4>
+<p>The <code>try!</code> function attempts to &#39;unpack&#39; the first argument: if the argument is
+an option type, and the argument is a <code>(some ...)</code> option, <code>try!</code> returns the inner value of the
+option. If the argument is a response type, and the argument is an <code>(ok ...)</code> response, <code>try!</code> returns
+the inner value of the <code>ok</code>. If the supplied argument is either an <code>(err ...)</code> or a <code>none</code> value,
+<code>try!</code> <em>returns</em> either <code>none</code> or the <code>(err ...)</code> value from the current function and exits the current control-flow.</p>
+<h4 id="example-64">example:</h4>
+<pre><code class="language-clarity">(define-map names-map { name: (string-ascii 12) } { id: int })
+(map-set names-map { name: \&quot;blockstack\&quot; } { id: 1337 })
+(try! (map-get? names-map { name: \&quot;blockstack\&quot; })) ;; Returns (tuple (id 1337))
+(define-private (checked-even (x int))
+  (if (is-eq (mod x 2) 0)
+      (ok x)
+      (err false)))
+(define-private (double-if-even (x int))
+  (ok (* 2 (try! (checked-even x)))))
+(double-if-even 10) ;; Returns (ok 20)
+(double-if-even 3) ;; Returns (err false)
+</code></pre>
+<h3 id="is-ok">is-ok</h3>
+<h4 id="input-response-a-b-1">input: <code>(response A B)</code></h4>
+<h4 id="output-bool-14">output: <code>bool</code></h4>
+<h4 id="signature-is-ok-value">signature: <code>(is-ok value)</code></h4>
+<h4 id="description-65">description:</h4>
+<p><code>is-ok</code> tests a supplied response value, returning <code>true</code> if the response was <code>ok</code>,
+and <code>false</code> if it was an <code>err</code>.</p>
+<h4 id="example-65">example:</h4>
+<pre><code class="language-clarity">(is-ok (ok 1)) ;; Returns true
+(is-ok (err 1)) ;; Returns false
+</code></pre>
+<h3 id="is-none">is-none</h3>
+<h4 id="input-optional-a">input: <code>(optional A)</code></h4>
+<h4 id="output-bool-15">output: <code>bool</code></h4>
+<h4 id="signature-is-none-value">signature: <code>(is-none value)</code></h4>
+<h4 id="description-66">description:</h4>
+<p><code>is-none</code> tests a supplied option value, returning <code>true</code> if the option value is <code>(none)</code>,
+and <code>false</code> if it is a <code>(some ...)</code>.</p>
+<h4 id="example-66">example:</h4>
+<pre><code class="language-clarity">(define-map names-map { name: (string-ascii 12) } { id: int })
+(map-set names-map { name: \&quot;blockstack\&quot; } { id: 1337 })
+(is-none (get id (map-get? names-map { name: \&quot;blockstack\&quot; }))) ;; Returns false
+(is-none (get id (map-get? names-map { name: \&quot;non-existant\&quot; }))) ;; Returns true
+</code></pre>
+<h3 id="is-err">is-err</h3>
+<h4 id="input-response-a-b-2">input: <code>(response A B)</code></h4>
+<h4 id="output-bool-16">output: <code>bool</code></h4>
+<h4 id="signature-is-err-value">signature: <code>(is-err value)</code></h4>
+<h4 id="description-67">description:</h4>
+<p><code>is-err</code> tests a supplied response value, returning <code>true</code> if the response was an <code>err</code>,
+and <code>false</code> if it was an <code>ok</code>.</p>
+<h4 id="example-67">example:</h4>
+<pre><code class="language-clarity">(is-err (ok 1)) ;; Returns false
+(is-err (err 1)) ;; Returns true
+</code></pre>
+<h3 id="is-some">is-some</h3>
+<h4 id="input-optional-a-1">input: <code>(optional A)</code></h4>
+<h4 id="output-bool-17">output: <code>bool</code></h4>
+<h4 id="signature-is-some-value">signature: <code>(is-some value)</code></h4>
+<h4 id="description-68">description:</h4>
+<p><code>is-some</code> tests a supplied option value, returning <code>true</code> if the option value is <code>(some ...)</code>,
+and <code>false</code> if it is a <code>none</code>.</p>
+<h4 id="example-68">example:</h4>
+<pre><code class="language-clarity">
+(define-map names-map { name: (string-ascii 12) } { id: int })
+(map-set names-map { name: \&quot;blockstack\&quot; } { id: 1337 })
+(is-some (get id (map-get? names-map { name: \&quot;blockstack\&quot; }))) ;; Returns true
+(is-some (get id (map-get? names-map { name: \&quot;non-existant\&quot; }))) ;; Returns false
+</code></pre>
+<h3 id="filter">filter</h3>
+<h4 id="input-functiona---bool-sequence_a">input: <code>Function(A) -&gt; bool, sequence_A</code></h4>
+<h4 id="output-sequence_a-2">output: <code>sequence_A</code></h4>
+<h4 id="signature-filter-func-sequence">signature: <code>(filter func sequence)</code></h4>
+<h4 id="description-69">description:</h4>
+<p>The <code>filter</code> function applies the input function <code>func</code> to each element of the
+input sequence, and returns the same sequence with any elements removed for which <code>func</code> returned <code>false</code>.
+Applicable sequence types are <code>(list A)</code>, <code>buff</code>, <code>string-ascii</code> and <code>string-utf8</code>,
+for which the corresponding element types are, respectively, <code>A</code>, <code>(buff 1)</code>, <code>(string-ascii 1)</code> and <code>(string-utf8 1)</code>.
+The <code>func</code> argument must be a literal function name.
+`</p>
+<h4 id="example-69">example:</h4>
+<pre><code class="language-clarity">
+(filter not (list true false true false)) ;; Returns (false false)
+(define-private (is-a (char (string-utf8 1))) (is-eq char u\&quot;a\&quot;))
+(filter is-a u\&quot;acabd\&quot;) ;; Returns u\&quot;aa\&quot;
+(define-private (is-zero (char (buff 1))) (is-eq char 0x00))
+(filter is-zero 0x00010002) ;; Returns 0x0000
+</code></pre>
+<h3 id="ft-get-balance">ft-get-balance</h3>
+<h4 id="input-tokenname-principal">input: <code>TokenName, principal</code></h4>
+<h4 id="output-uint-2">output: <code>uint</code></h4>
+<h4 id="signature-ft-get-balance-token-name-principal">signature: <code>(ft-get-balance token-name principal)</code></h4>
+<h4 id="description-70">description:</h4>
+<p><code>ft-get-balance</code> returns <code>token-name</code> balance of the principal <code>principal</code>.
+The token type must have been defined using <code>define-fungible-token</code>.</p>
+<h4 id="example-70">example:</h4>
+<pre><code class="language-clarity">(define-fungible-token stackaroo)
+(ft-mint? stackaroo u100 &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR)
+(ft-get-balance stackaroo &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR) ;; Returns u100
+</code></pre>
+<h3 id="nft-get-owner">nft-get-owner?</h3>
+<h4 id="input-assetname-a">input: <code>AssetName, A</code></h4>
+<h4 id="output-optional-principal">output: <code>(optional principal)</code></h4>
+<h4 id="signature-nft-get-owner-asset-class-asset-identifier">signature: <code>(nft-get-owner? asset-class asset-identifier)</code></h4>
+<h4 id="description-71">description:</h4>
+<p><code>nft-get-owner?</code> returns the owner of an asset, identified by <code>asset-identifier</code>, or <code>none</code> if the asset does not exist.
+The asset type must have been defined using <code>define-non-fungible-token</code>, and the supplied <code>asset-identifier</code> must be of the same type specified in
+that definition.</p>
+<h4 id="example-71">example:</h4>
+<pre><code class="language-clarity">(define-non-fungible-token stackaroo (string-ascii 40))
+(nft-mint? stackaroo \&quot;Roo\&quot; &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF)
+(nft-get-owner? stackaroo \&quot;Roo\&quot;) ;; Returns (some SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF)
+(nft-get-owner? stackaroo \&quot;Too\&quot;) ;; Returns none
+</code></pre>
+<h3 id="ft-transfer">ft-transfer?</h3>
+<h4 id="input-tokenname-uint-principal-principal">input: <code>TokenName, uint, principal, principal</code></h4>
+<h4 id="output-response-bool-uint">output: <code>(response bool uint)</code></h4>
+<h4 id="signature-ft-transfer-token-name-amount-sender-recipient">signature: <code>(ft-transfer? token-name amount sender recipient)</code></h4>
+<h4 id="description-72">description:</h4>
+<p><code>ft-transfer?</code> is used to increase the token balance for the <code>recipient</code> principal for a token
+type defined using <code>define-fungible-token</code> by debiting the <code>sender</code> principal. In contrast to <code>stx-transfer?</code>,
+any user can transfer the assets. When used, relevant guards need to be added.</p>
+<p>This function returns (ok true) if the transfer is successful. In the event of an unsuccessful transfer it returns
+one of the following error codes:</p>
+<p><code>(err u1)</code> -- <code>sender</code> does not have enough balance to transfer
+<code>(err u2)</code> -- <code>sender</code> and <code>recipient</code> are the same principal
+<code>(err u3)</code> -- amount to send is non-positive
+`</p>
+<h4 id="example-72">example:</h4>
+<pre><code class="language-clarity">(define-fungible-token stackaroo)
+(ft-mint? stackaroo u100 &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR)
+(ft-transfer? stackaroo u50 &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF) ;; Returns (ok true)
+(ft-transfer? stackaroo u60 &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF) ;; Returns (err u1)
+</code></pre>
+<h3 id="nft-transfer">nft-transfer?</h3>
+<h4 id="input-assetname-a-principal-principal">input: <code>AssetName, A, principal, principal</code></h4>
+<h4 id="output-response-bool-uint-1">output: <code>(response bool uint)</code></h4>
+<h4 id="signature-nft-transfer-asset-class-asset-identifier-sender-recipient">signature: <code>(nft-transfer? asset-class asset-identifier sender recipient)</code></h4>
+<h4 id="description-73">description:</h4>
+<p><code>nft-transfer?</code> is used to change the owner of an asset identified by <code>asset-identifier</code>
+from <code>sender</code> to <code>recipient</code>. The <code>asset-class</code> must have been defined by <code>define-non-fungible-token</code> and <code>asset-identifier</code>
+must be of the type specified in that definition. In contrast to <code>stx-transfer?</code>, any user can transfer the asset.
+When used, relevant guards need to be added.</p>
+<p>This function returns (ok true) if the transfer is successful. In the event of an unsuccessful transfer it returns
+one of the following error codes:</p>
+<p><code>(err u1)</code> -- <code>sender</code> does not own the asset
+<code>(err u2)</code> -- <code>sender</code> and <code>recipient</code> are the same principal
+<code>(err u3)</code> -- asset identified by asset-identifier does not exist
+`</p>
+<h4 id="example-73">example:</h4>
+<pre><code class="language-clarity">(define-non-fungible-token stackaroo (string-ascii 40))
+(nft-mint? stackaroo \&quot;Roo\&quot; &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR)
+(nft-transfer? stackaroo \&quot;Roo\&quot; &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF) ;; Returns (ok true)
+(nft-transfer? stackaroo \&quot;Roo\&quot; &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF) ;; Returns (err u1)
+(nft-transfer? stackaroo \&quot;Stacka\&quot; &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF) ;; Returns (err u3)
+</code></pre>
+<h3 id="nft-mint">nft-mint?</h3>
+<h4 id="input-assetname-a-principal">input: <code>AssetName, A, principal</code></h4>
+<h4 id="output-response-bool-uint-2">output: <code>(response bool uint)</code></h4>
+<h4 id="signature-nft-mint-asset-class-asset-identifier-recipient">signature: <code>(nft-mint? asset-class asset-identifier recipient)</code></h4>
+<h4 id="description-74">description:</h4>
+<p><code>nft-mint?</code> is used to instantiate an asset and set that asset&#39;s owner to the <code>recipient</code> principal.
+The asset must have been defined using <code>define-non-fungible-token</code>, and the supplied <code>asset-identifier</code> must be of the same type specified in
+that definition.</p>
+<p>If an asset identified by <code>asset-identifier</code> <em>already exists</em>, this function will return an error with the following error code:</p>
+<p><code>(err u1)</code></p>
+<p>Otherwise, on successfuly mint, it returns <code>(ok true)</code>.
+`</p>
+<h4 id="example-74">example:</h4>
+<pre><code class="language-clarity">(define-non-fungible-token stackaroo (string-ascii 40))
+(nft-mint? stackaroo \&quot;Roo\&quot; &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF) ;; Returns (ok true)
+</code></pre>
+<h3 id="ft-mint">ft-mint?</h3>
+<h4 id="input-tokenname-uint-principal">input: <code>TokenName, uint, principal</code></h4>
+<h4 id="output-response-bool-uint-3">output: <code>(response bool uint)</code></h4>
+<h4 id="signature-ft-mint-token-name-amount-recipient">signature: <code>(ft-mint? token-name amount recipient)</code></h4>
+<h4 id="description-75">description:</h4>
+<p><code>ft-mint?</code> is used to increase the token balance for the <code>recipient</code> principal for a token
+type defined using <code>define-fungible-token</code>. The increased token balance is <em>not</em> transfered from another principal, but
+rather minted.</p>
+<p>If a non-positive amount is provided to mint, this function returns <code>(err 1)</code>. Otherwise, on successfuly mint, it
+returns <code>(ok true)</code>.
+`</p>
+<h4 id="example-75">example:</h4>
+<pre><code class="language-clarity">(define-fungible-token stackaroo)
+(ft-mint? stackaroo u100 &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF) ;; Returns (ok true)
+</code></pre>
+<h3 id="ft-get-supply">ft-get-supply</h3>
+<h4 id="input-tokenname">input: <code>TokenName</code></h4>
+<h4 id="output-uint-3">output: <code>uint</code></h4>
+<h4 id="signature-ft-get-supply-token-name">signature: <code>(ft-get-supply token-name)</code></h4>
+<h4 id="description-76">description:</h4>
+<p><code>ft-get-balance</code> returns <code>token-name</code> circulating supply.
+The token type must have been defined using <code>define-fungible-token</code>.</p>
+<h4 id="example-76">example:</h4>
+<pre><code class="language-clarity">(define-fungible-token stackaroo)
+(ft-mint? stackaroo u100 &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR)
+(ft-get-supply stackaroo) ;; Returns u100
+</code></pre>
+<h3 id="ft-burn">ft-burn?</h3>
+<h4 id="input-tokenname-uint-principal-1">input: <code>TokenName, uint, principal</code></h4>
+<h4 id="output-response-bool-uint-4">output: <code>(response bool uint)</code></h4>
+<h4 id="signature-ft-burn-token-name-amount-sender">signature: <code>(ft-burn? token-name amount sender)</code></h4>
+<h4 id="description-77">description:</h4>
+<p><code>ft-burn?</code> is used to decrease the token balance for the <code>sender</code> principal for a token
+type defined using <code>define-fungible-token</code>. The decreased token balance is <em>not</em> transfered to another principal, but
+rather destroyed, reducing the circulating supply.</p>
+<p>If a non-positive amount is provided to burn, this function returns <code>(err 1)</code>. Otherwise, on successfuly burn, it
+returns <code>(ok true)</code>.</p>
+<h4 id="example-77">example:</h4>
+<pre><code class="language-clarity">
+(define-fungible-token stackaroo)
+(ft-mint? stackaroo u100 &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF) ;; Returns (ok true)
+(ft-burn? stackaroo u50 &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF) ;; Returns (ok true)
+</code></pre>
+<h3 id="nft-burn">nft-burn?</h3>
+<h4 id="input-assetname-a-principal-1">input: <code>AssetName, A, principal</code></h4>
+<h4 id="output-response-bool-uint-5">output: <code>(response bool uint)</code></h4>
+<h4 id="signature-nft-burn-asset-class-asset-identifier-recipient">signature: <code>(nft-burn? asset-class asset-identifier recipient)</code></h4>
+<h4 id="description-78">description:</h4>
+<p><code>nft-burn?</code> is used to burn an asset and remove that asset&#39;s owner from the <code>recipient</code> principal.
+The asset must have been defined using <code>define-non-fungible-token</code>, and the supplied <code>asset-identifier</code> must be of the same type specified in
+that definition.</p>
+<p>If an asset identified by <code>asset-identifier</code> <em>doesn&#39;t exist</em>, this function will return an error with the following error code:</p>
+<p><code>(err u1)</code></p>
+<p>Otherwise, on successfuly burn, it returns <code>(ok true)</code>.
+`</p>
+<h4 id="example-78">example:</h4>
+<pre><code class="language-clarity">(define-non-fungible-token stackaroo (string-ascii 40))
+(nft-mint? stackaroo \&quot;Roo\&quot; &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF) ;; Returns (ok true)
+(nft-burn? stackaroo \&quot;Roo\&quot; &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF) ;; Returns (ok true)
+</code></pre>
+<h3 id="stx-get-balance">stx-get-balance</h3>
+<h4 id="input-principal">input: <code>principal</code></h4>
+<h4 id="output-uint-4">output: <code>uint</code></h4>
+<h4 id="signature-stx-get-balance-owner">signature: <code>(stx-get-balance owner)</code></h4>
+<h4 id="description-79">description:</h4>
+<p><code>stx-get-balance</code> is used to query the STX balance of the <code>owner</code> principal.</p>
+<p>This function returns the STX balance of the <code>owner</code> principal. In the event that the <code>owner</code>
+principal isn&#39;t materialized, it returns 0.</p>
+<h4 id="example-79">example:</h4>
+<pre><code class="language-clarity">(stx-get-balance &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR) ;; Returns u0
+(stx-get-balance (as-contract tx-sender)) ;; Returns u1000
+</code></pre>
+<h3 id="stx-transfer">stx-transfer?</h3>
+<h4 id="input-uint-principal-principal">input: <code>uint, principal, principal</code></h4>
+<h4 id="output-response-bool-uint-6">output: <code>(response bool uint)</code></h4>
+<h4 id="signature-stx-transfer-amount-sender-recipient">signature: <code>(stx-transfer? amount sender recipient)</code></h4>
+<h4 id="description-80">description:</h4>
+<p><code>stx-transfer?</code> is used to increase the STX balance for the <code>recipient</code> principal
+by debiting the <code>sender</code> principal. The <code>sender</code> principal <em>must</em> be equal to the current context&#39;s <code>tx-sender</code>.</p>
+<p>This function returns (ok true) if the transfer is successful. In the event of an unsuccessful transfer it returns
+one of the following error codes:</p>
+<p><code>(err u1)</code> -- <code>sender</code> does not have enough balance to transfer
+<code>(err u2)</code> -- <code>sender</code> and <code>recipient</code> are the same principal
+<code>(err u3)</code> -- amount to send is non-positive
+<code>(err u4)</code> -- the <code>sender</code> principal is not the current <code>tx-sender</code></p>
+<h4 id="example-80">example:</h4>
+<pre><code class="language-clarity">
+(as-contract
+  (stx-transfer? u60 tx-sender &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR)) ;; Returns (ok true)
+(as-contract
+  (stx-transfer? u50 &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR tx-sender)) ;; Returns (err u4)
+</code></pre>
+<h3 id="stx-burn">stx-burn?</h3>
+<h4 id="input-uint-principal">input: <code>uint, principal</code></h4>
+<h4 id="output-response-bool-uint-7">output: <code>(response bool uint)</code></h4>
+<h4 id="signature-stx-burn-amount-sender">signature: <code>(stx-burn? amount sender)</code></h4>
+<h4 id="description-81">description:</h4>
+<p><code>stx-burn?</code> debits the <code>sender</code> principal&#39;s STX holdings by <code>amount</code>, destroying
+the STX. The <code>sender</code> principal <em>must</em> be equal to the current context&#39;s <code>tx-sender</code>.</p>
+<p>This function returns (ok true) if the transfer is successful. In the event of an unsuccessful transfer it returns
+one of the following error codes:</p>
+<p><code>(err u1)</code> -- <code>sender</code> does not have enough balance to transfer
+<code>(err u3)</code> -- amount to send is non-positive
+<code>(err u4)</code> -- the <code>sender</code> principal is not the current <code>tx-sender</code></p>
+<h4 id="example-81">example:</h4>
+<pre><code class="language-clarity">(as-contract
+  (stx-burn? u60 tx-sender)) ;; Returns (ok true)
+(as-contract
+  (stx-burn? u50 &#39;SZ2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKQ9H6DPR)) ;; Returns (err u4)
+</code></pre>
+<h3 id="define-constant">define-constant</h3>
+<h4 id="input-methodsignature-methodbody">input: <code>MethodSignature, MethodBody</code></h4>
+<h4 id="output-not-applicable">output: <code>Not Applicable</code></h4>
+<h4 id="signature-define-constant-name-expression">signature: <code>(define-constant name expression)</code></h4>
+<h4 id="description-82">description:</h4>
+<p><code>define-constant</code> is used to define a private constant value in a smart contract.
+The expression passed into the definition is evaluated at contract launch, in the order that it is
+supplied in the contract. This can lead to undefined function or undefined variable errors in the
+event that a function or variable used in the expression has not been defined before the constant.</p>
+<p>Like other kinds of definition statements, <code>define-constant</code> may only be used at the top level of a smart contract definition (i.e., you cannot put a define statement in the middle of a function body).</p>
+<h4 id="example-82">example:</h4>
+<pre><code class="language-clarity">
+(define-constant four (+ 2 2))
+(+ 4 four) ;; Returns 8
+</code></pre>
+<h3 id="define-private">define-private</h3>
+<h4 id="input-methodsignature-methodbody-1">input: <code>MethodSignature, MethodBody</code></h4>
+<h4 id="output-not-applicable-1">output: <code>Not Applicable</code></h4>
+<h4 id="signature-define-private-function-name-arg-name-0-arg-type-0-arg-name-1-arg-type-1--function-body">signature: <code>(define-private (function-name (arg-name-0 arg-type-0) (arg-name-1 arg-type-1) ...) function-body)</code></h4>
+<h4 id="description-83">description:</h4>
+<p><code>define-private</code> is used to define <em>private</em> functions for a smart contract. Private
+functions may not be called from other smart contracts, nor may they be invoked directly by users.
+Instead, these functions may only be invoked by other functions defined in the same smart contract.</p>
+<p>Like other kinds of definition statements, <code>define-private</code> may only be used at the top level of a smart contract
+definition (i.e., you cannot put a define statement in the middle of a function body).</p>
+<p>Private functions may return any type.</p>
+<h4 id="example-83">example:</h4>
+<pre><code class="language-clarity">(define-private (max-of (i1 int) (i2 int))
+  (if (&gt; i1 i2)
+      i1
+      i2))
+(max-of 4 6) ;; Returns 6
+</code></pre>
+<h3 id="define-public">define-public</h3>
+<h4 id="input-methodsignature-methodbody-2">input: <code>MethodSignature, MethodBody</code></h4>
+<h4 id="output-not-applicable-2">output: <code>Not Applicable</code></h4>
+<h4 id="signature-define-public-function-name-arg-name-0-arg-type-0-arg-name-1-arg-type-1--function-body">signature: <code>(define-public (function-name (arg-name-0 arg-type-0) (arg-name-1 arg-type-1) ...) function-body)</code></h4>
+<h4 id="description-84">description:</h4>
+<p><code>define-public</code> is used to define a <em>public</em> function and transaction for a smart contract. Public
+functions are callable from other smart contracts and may be invoked directly by users by submitting a transaction
+to the Stacks blockchain.</p>
+<p>Like other kinds of definition statements, <code>define-public</code> may only be used at the top level of a smart contract
+definition (i.e., you cannot put a define statement in the middle of a function body).</p>
+<p>Public functions <em>must</em> return a ResponseType (using either <code>ok</code> or <code>err</code>). Any datamap modifications performed by
+a public function is aborted if the function returns an <code>err</code> type. Public functions may be invoked by other
+contracts via <code>contract-call?</code>.</p>
+<h4 id="example-84">example:</h4>
+<pre><code class="language-clarity">(define-public (hello-world (input int))
+  (begin (print (+ 2 input))
+         (ok input)))
+</code></pre>
+<h3 id="define-read-only">define-read-only</h3>
+<h4 id="input-methodsignature-methodbody-3">input: <code>MethodSignature, MethodBody</code></h4>
+<h4 id="output-not-applicable-3">output: <code>Not Applicable</code></h4>
+<h4 id="signature-define-read-only-function-name-arg-name-0-arg-type-0-arg-name-1-arg-type-1--function-body">signature: <code>(define-read-only (function-name (arg-name-0 arg-type-0) (arg-name-1 arg-type-1) ...) function-body)</code></h4>
+<h4 id="description-85">description:</h4>
+<p><code>define-read-only</code> is used to define a <em>public read-only</em> function for a smart contract. Such
+functions are callable from other smart contracts.</p>
+<p>Like other kinds of definition statements, <code>define-read-only</code> may only be used at the top level of a smart contract
+definition (i.e., you cannot put a define statement in the middle of a function body).</p>
+<p>Read-only functions may return any type. However, read-only functions
+may not perform any datamap modifications, or call any functions which
+perform such modifications. This is enforced both during type checks and during
+the execution of the function. Public read-only functions may
+be invoked by other contracts via <code>contract-call?</code>.</p>
+<h4 id="example-85">example:</h4>
+<pre><code class="language-clarity">(define-read-only (just-return-one-hundred)
+  (* 10 10))
+</code></pre>
+<h3 id="define-map">define-map</h3>
+<h4 id="input-mapname-typedefinition-typedefinition">input: <code>MapName, TypeDefinition, TypeDefinition</code></h4>
+<h4 id="output-not-applicable-4">output: <code>Not Applicable</code></h4>
+<h4 id="signature-define-map-map-name-key-type-value-type">signature: <code>(define-map map-name key-type value-type)</code></h4>
+<h4 id="description-86">description:</h4>
+<p><code>define-map</code> is used to define a new datamap for use in a smart contract. Such
+maps are only modifiable by the current smart contract.</p>
+<p>Maps are defined with a key type and value type, often these types are tuple types.</p>
+<p>Like other kinds of definition statements, <code>define-map</code> may only be used at the top level of a smart contract
+definition (i.e., you cannot put a define statement in the middle of a function body).</p>
+<h4 id="example-86">example:</h4>
+<pre><code class="language-clarity">(define-map squares { x: int } { square: int })
+(define-private (add-entry (x int))
+  (map-insert squares { x: 2 } { square: (* x x) }))
+(add-entry 1)
+(add-entry 2)
+(add-entry 3)
+(add-entry 4)
+(add-entry 5)
+</code></pre>
+<h3 id="define-data-var">define-data-var</h3>
+<h4 id="input-varname-typedefinition-value">input: <code>VarName, TypeDefinition, Value</code></h4>
+<h4 id="output-not-applicable-5">output: <code>Not Applicable</code></h4>
+<h4 id="signature-define-data-var-var-name-type-value">signature: <code>(define-data-var var-name type value)</code></h4>
+<h4 id="description-87">description:</h4>
+<p><code>define-data-var</code> is used to define a new persisted variable for use in a smart contract. Such
+variable are only modifiable by the current smart contract.</p>
+<p>Persisted variable are defined with a type and a value.</p>
+<p>Like other kinds of definition statements, <code>define-data-var</code> may only be used at the top level of a smart contract
+definition (i.e., you cannot put a define statement in the middle of a function body).</p>
+<h4 id="example-87">example:</h4>
+<pre><code class="language-clarity">(define-data-var size int 0)
+(define-private (set-size (value int))
+  (var-set size value))
+(set-size 1)
+(set-size 2)
+</code></pre>
+<h3 id="define-fungible-token">define-fungible-token</h3>
+<h4 id="input-tokenname-uint">input: <code>TokenName, &lt;uint&gt;</code></h4>
+<h4 id="output-not-applicable-6">output: <code>Not Applicable</code></h4>
+<h4 id="signature-define-fungible-token-token-name-total-supply">signature: <code>(define-fungible-token token-name &lt;total-supply&gt;)</code></h4>
+<h4 id="description-88">description:</h4>
+<p><code>define-fungible-token</code> is used to define a new fungible token class for use in the current contract.</p>
+<p>The second argument, if supplied, defines the total supply of the fungible token. This ensures that all calls to the <code>ft-mint?</code>
+function will never be able to create more than <code>total-supply</code> tokens. If any such call were to increase the total supply
+of tokens passed that amount, that invocation of <code>ft-mint?</code> will result in a runtime error and abort.</p>
+<p>Like other kinds of definition statements, <code>define-fungible-token</code> may only be used at the top level of a smart contract
+definition (i.e., you cannot put a define statement in the middle of a function body).</p>
+<p>Tokens defined using <code>define-fungible-token</code> may be used in <code>ft-transfer?</code>, <code>ft-mint?</code>, and <code>ft-get-balance</code> functions`</p>
+<h4 id="example-88">example:</h4>
+<pre><code class="language-clarity">(define-fungible-token stacks)
+(define-fungible-token limited-supply-stacks u100)
+</code></pre>
+<h3 id="define-non-fungible-token">define-non-fungible-token</h3>
+<h4 id="input-assetname-typesignature">input: <code>AssetName, TypeSignature</code></h4>
+<h4 id="output-not-applicable-7">output: <code>Not Applicable</code></h4>
+<h4 id="signature-define-non-fungible-token-asset-name-asset-identifier-type">signature: <code>(define-non-fungible-token asset-name asset-identifier-type)</code></h4>
+<h4 id="description-89">description:</h4>
+<p><code>define-non-fungible-token</code> is used to define a new non-fungible token class for use in the current contract.
+Individual assets are identified by their asset identifier, which must be of the type <code>asset-identifier-type</code>. Asset
+identifiers are <em>unique</em> identifiers.</p>
+<p>Like other kinds of definition statements, <code>define-non-fungible-token</code> may only be used at the top level of a smart contract
+definition (i.e., you cannot put a define statement in the middle of a function body).</p>
+<p>Assets defined using <code>define-non-fungible-token</code> may be used in <code>nft-transfer?</code>, <code>nft-mint?</code>, and <code>nft-get-owner?</code> functions`</p>
+<h4 id="example-89">example:</h4>
+<pre><code class="language-clarity">(define-non-fungible-token names (buff 50))
+</code></pre>
+<h3 id="define-trait">define-trait</h3>
+<h4 id="input-varname-methodsignature">input: <code>VarName, [MethodSignature]</code></h4>
+<h4 id="output-not-applicable-8">output: <code>Not Applicable</code></h4>
+<h4 id="signature-define-trait-trait-name-func1-name-arg1-type-arg2-type--return-type">signature: <code>(define-trait trait-name ((func1-name (arg1-type arg2-type ...) (return-type))))</code></h4>
+<h4 id="description-90">description:</h4>
+<p><code>define-trait</code> is used to define a new trait definition for use in a smart contract. Other contracts
+can implement a given trait and then have their contract identifier being passed as function arguments in order to be called
+dynamically with <code>contract-call?</code>.</p>
+<p>Traits are defined with a name, and a list functions defined with a name, a list of argument types, and return type.</p>
+<p>Like other kinds of definition statements, <code>define-trait</code> may only be used at the top level of a smart contract
+definition (i.e., you cannot put a define statement in the middle of a function body).</p>
+<h4 id="example-90">example:</h4>
+<pre><code class="language-clarity">(define-trait token-trait
+    ((transfer? (principal principal uint) (response uint uint))
+     (get-balance (principal) (response uint uint))))
+</code></pre>
+<h3 id="use-trait">use-trait</h3>
+<h4 id="input-varname-traitidentifier">input: <code>VarName, TraitIdentifier</code></h4>
+<h4 id="output-not-applicable-9">output: <code>Not Applicable</code></h4>
+<h4 id="signature-use-trait-trait-alias-trait-identifier">signature: <code>(use-trait trait-alias trait-identifier)</code></h4>
+<h4 id="description-91">description:</h4>
+<p><code>use-trait</code> is used to bring a trait, defined in another contract, to the current contract. Subsequent
+references to an imported trait are signaled with the syntax <code>&lt;trait-alias&gt;</code>.</p>
+<p>Traits import are defined with a name, used as an alias, and a trait identifier. Trait identifiers can either be
+using the sugared syntax (.token-a.token-trait), or be fully qualified (&#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF.token-a.token-trait).</p>
+<p>Like other kinds of definition statements, <code>use-trait</code> may only be used at the top level of a smart contract
+definition (i.e., you cannot put such a statement in the middle of a function body).</p>
+<h4 id="example-91">example:</h4>
+<pre><code class="language-clarity">(use-trait token-a-trait &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF.token-a.token-trait)
+(define-public (forward-get-balance (user principal) (contract &lt;token-a-trait&gt;))
+  (begin
+    (ok 1)))
+</code></pre>
+<h3 id="impl-trait">impl-trait</h3>
+<h4 id="input-traitidentifier">input: <code>TraitIdentifier</code></h4>
+<h4 id="output-not-applicable-10">output: <code>Not Applicable</code></h4>
+<h4 id="signature-impl-trait-trait-identifier">signature: <code>(impl-trait trait-identifier)</code></h4>
+<h4 id="description-92">description:</h4>
+<p><code>impl-trait</code> can be use for asserting that a contract is fully implementing a given trait.
+Additional checks are being performed when the contract is being published, rejecting the deployment if the
+contract is violating the trait specification.</p>
+<p>Trait identifiers can either be using the sugared syntax (.token-a.token-trait), or be fully qualified
+(&#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF.token-a.token-trait).</p>
+<p>Like other kinds of definition statements, <code>impl-trait</code> may only be used at the top level of a smart contract
+definition (i.e., you cannot put such a statement in the middle of a function body).</p>
+<h4 id="example-92">example:</h4>
+<pre><code class="language-clarity">(impl-trait &#39;SPAXYA5XS51713FDTQ8H94EJ4V579CXMTRNBZKSF.token-a.token-trait)
+(define-public (get-balance (account principal))
+  (ok u0))
+(define-public (transfer? (from principal) (to principal) (amount uint))
+  (ok u0))
+</code></pre> -->
